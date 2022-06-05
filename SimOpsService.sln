@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{06805A00-62BF-4418-AEE8-28B5A9AD3C56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimOpsService", "src\SimOpsService\SimOpsService.csproj", "{CD3119ED-D1E6-4C23-A35A-219449B3426F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CD3119ED-D1E6-4C23-A35A-219449B3426F} = {06805A00-62BF-4418-AEE8-28B5A9AD3C56}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CD3119ED-D1E6-4C23-A35A-219449B3426F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD3119ED-D1E6-4C23-A35A-219449B3426F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD3119ED-D1E6-4C23-A35A-219449B3426F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD3119ED-D1E6-4C23-A35A-219449B3426F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
