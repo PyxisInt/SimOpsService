@@ -70,13 +70,13 @@ try
     {
         c.SwaggerDoc("v1", new OpenApiInfo
         {
-            Title = "Template Services v1.0",
+            Title = "SimOps Services v1.0",
             Version = "v1",
             Contact = new OpenApiContact
             {
-                Email = "template@info.com",
-                Name = "Template Service",
-                Url = new Uri("https://github.com/ghosh9691/SimOpsService")
+                Email = "info@pyxisint.com",
+                Name = "SimOps Service",
+                Url = new Uri("https://github.com/PyxisInt/SimOpsService")
             }
         });
         //add security bits here....
@@ -135,13 +135,16 @@ try
     app.UseAuthorization();
     //******* customize CORS policy as needed
     app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+
+    app.UseHttpsRedirection();
+    app.UseHsts();
     app.UseHttpMetrics(); //uses Prometheus for metrics
 
     //******* SWAGGER: Put in if (app.Environment.IsDevelopment) section if not wanting to expose documentation *******
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Template Web Service 1.0"); 
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "SimOps Web Service 1.0"); 
         c.DisplayOperationId();
         c.DisplayRequestDuration();
     });
