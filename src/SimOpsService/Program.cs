@@ -64,10 +64,6 @@ try
         options.SerializerSettings.Converters.Add(new StringEnumConverter());
         options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
     });
-    builder.Services.AddHttpsRedirection(options =>
-    {
-        options.RedirectStatusCode = (int) HttpStatusCode.TemporaryRedirect;
-    });
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddOptions();
     builder.Services.AddHealthChecks();
@@ -133,7 +129,6 @@ try
     //app.UseHsts();
     //*********** END HSTS Settings *******
 
-    app.UseHttpsRedirection();
     app.UseHsts();
     
     app.UseRouting();
