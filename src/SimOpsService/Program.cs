@@ -128,6 +128,8 @@ try
     //app.UseHsts();
     //*********** END HSTS Settings *******
 
+    app.UseHttpsRedirection();
+    app.UseHsts();
     
     app.UseRouting();
 
@@ -136,8 +138,6 @@ try
     //******* customize CORS policy as needed
     app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
-    app.UseHttpsRedirection();
-    app.UseHsts();
     app.UseHttpMetrics(); //uses Prometheus for metrics
 
     //******* SWAGGER: Put in if (app.Environment.IsDevelopment) section if not wanting to expose documentation *******

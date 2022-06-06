@@ -21,7 +21,7 @@ namespace SimOpsService.Controllers
         {
             return Ok(new
             {
-                Message = "Template Web Service 1.0",
+                Message = "SimOps Web Service 1.0",
                 CurrentMinimumLogLevel = Program.LogLevelSwitch.MinimumLevel,
                 AvailableAt = await GetMyExternalIP()
             });
