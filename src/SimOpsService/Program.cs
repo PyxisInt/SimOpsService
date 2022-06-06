@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -62,6 +63,10 @@ try
     {
         options.SerializerSettings.Converters.Add(new StringEnumConverter());
         options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+    });
+    builder.Services.AddHttpsRedirection(options =>
+    {
+        options.RedirectStatusCode = (int) HttpStatusCode.TemporaryRedirect;
     });
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddOptions();
