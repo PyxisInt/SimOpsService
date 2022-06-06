@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Routing;
@@ -44,6 +45,18 @@ try
 
     builder.Host.UseSerilog((ctx, lc) => { lc.WriteTo.Console(); });
     builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
+    builder.Services.AddAuthentication(x =>
+    {
+        x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    }).AddJwtBearer(x =>
+    {
+        x.Authority = builder.Configuration["Auth0:Authority"];
+        x.Audience = builder.Configuration["Auth0:ApiIdentifier"];
+    });
+
+    builder.Services.AddAuthorization();
+    
     builder.Services.AddCors();
     builder.Services.AddControllers().AddNewtonsoftJson(options =>
     {
@@ -67,6 +80,27 @@ try
             }
         });
         //add security bits here....
+        c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+        {
+            In = ParameterLocation.Header,
+            Description = "Please enter Bearer followed by a JWT token here...",
+            Name = "Authorization",
+            Type = SecuritySchemeType.ApiKey
+        });
+        c.AddSecurityRequirement(new OpenApiSecurityRequirement
+        {
+            {
+                new OpenApiSecurityScheme
+                {
+                    Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = "Bearer"
+                    }
+                },
+                new string[] { }
+            }
+        });
     });
     builder.Services.AddSwaggerGenNewtonsoftSupport();
 
@@ -94,14 +128,23 @@ try
     //app.UseHsts();
     //*********** END HSTS Settings *******
 
+    
     app.UseRouting();
+
+    app.UseAuthentication();
+    app.UseAuthorization();
     //******* customize CORS policy as needed
     app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
     app.UseHttpMetrics(); //uses Prometheus for metrics
 
     //******* SWAGGER: Put in if (app.Environment.IsDevelopment) section if not wanting to expose documentation *******
     app.UseSwagger();
-    app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Template Web Service 1.0"); });
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Template Web Service 1.0"); 
+        c.DisplayOperationId();
+        c.DisplayRequestDuration();
+    });
     //********* END OF SWAGGER ********
 
     app.UseEndpoints(endpoints =>
