@@ -1,4 +1,4 @@
-![Nuget](https://img.shields.io/nuget/v/SimOps.Models) ![Docker Image Version (latest by date)](https://img.shields.io/docker/v/pyxisint/simopsservice?sort=date)
+![Nuget](https://img.shields.io/nuget/v/SimOps.Models) ![Docker Image Version (latest by date)](https://img.shields.io/docker/v/pyxisint/simopsservice?label=Docker&sort=date)
 
 
 # SimOpsService
