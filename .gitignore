@@ -354,3 +354,6 @@ MigrationBackup/
 
 # MacOS Files
 **/.DS_Store
+
+# Rider files
+.idea/
