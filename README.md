@@ -1,3 +1,6 @@
+![Nuget](https://img.shields.io/nuget/v/SimOps.Models)
+
+
 # SimOpsService
 SimOpsService - The backend for Pyxis International's SimOps
 
@@ -10,6 +13,3 @@ SimOpsService is documented via Swagger. Please see [the Swagger docs](https://s
 
 ### NOTE: Registration is not currently offered. 
 
-## Build Status
-
-![Nuget](https://img.shields.io/nuget/v/SimOps.Models)
