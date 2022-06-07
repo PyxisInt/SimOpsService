@@ -4,22 +4,22 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /source
+WORKDIR /
 COPY *.sln .
+COPY src/SimOps.Models/SimOps.Models.csproj ./src/SimOps.Models/
 COPY src/SimOpsService/SimOpsService.csproj ./src/SimOpsService/
-COPY src/SimOps.Models/SimOps.Models.csproj ./src/SimOps.Models
 COPY tests/SimOpsService.Tests/SimOpsService.Tests.csproj ./tests/SimOpsService.Tests/
 RUN dotnet restore
 
 # copy everything else
-COPY src/SimOpsService/. ./src/SimOpsService/
 COPY src/SimOps.Models/. ./src/SimOps.Models/
+COPY src/SimOpsService/. ./src/SimOpsService/
 COPY tests/SimOpsService.Tests/. ./tests/SimOpsService.Tests/
-WORKDIR /source/src/SimOpsService
+WORKDIR /src/SimOpsService
 RUN dotnet build  -c Release -o /app/build
 
 FROM build AS test
-WORKDIR /source/tests/SimOpsService.Tests/
+WORKDIR /tests/SimOpsService.Tests/
 RUN dotnet test
 
 FROM build AS publish

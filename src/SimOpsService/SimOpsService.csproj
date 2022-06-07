@@ -32,5 +32,9 @@
     <PackageReference Include="Serilog.Enrichers.CorrelationId" Version="3.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SimOps.Models\SimOps.Models.csproj" />
+  </ItemGroup>
+
 
 </Project>
