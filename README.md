@@ -5,7 +5,7 @@
 SimOpsService - The backend for Pyxis International's SimOps
 
 ## SimOps
-This repository is part of the SimOps suite of products for flight simulation. Please see [SimOps](https://github.com/PyxisInt/SimOps) for more details
+This repository is part of the SimOps Virtual Airline Management System. Please see [SimOps](https://github.com/PyxisInt/SimOps) for more details
 
 ## Documentation
 
