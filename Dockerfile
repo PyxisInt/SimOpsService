@@ -7,11 +7,13 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /source
 COPY *.sln .
 COPY src/SimOpsService/SimOpsService.csproj ./src/SimOpsService/
+COPY src/SimOps.Models/SimOps.Models.csproj ./src/SimOps.Models
 COPY tests/SimOpsService.Tests/SimOpsService.Tests.csproj ./tests/SimOpsService.Tests/
 RUN dotnet restore
 
 # copy everything else
 COPY src/SimOpsService/. ./src/SimOpsService/
+COPY src/SimOps.Models/. ./src/SimOps.Models/
 COPY tests/SimOpsService.Tests/. ./tests/SimOpsService.Tests/
 WORKDIR /source/src/SimOpsService
 RUN dotnet build  -c Release -o /app/build
