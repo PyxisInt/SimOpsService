@@ -36,7 +36,7 @@ void SetupApplicationDependencyInjection(IServiceCollection services)
 }
 
 Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateBootstrapLogger();
-Log.Information("Template Service is starting...");
+Log.Information("SimOps Service is starting...");
 
 LogLevelSwitch.MinimumLevel = LogEventLevel.Information;
 
@@ -125,10 +125,6 @@ try
 
     app.UseSerilogRequestLogging();
 
-    //****** HSTS Settings - uncomment if NOT running in a Kubernetes Cluster *******
-    //app.UseHsts();
-    //*********** END HSTS Settings *******
-
     app.UseHsts();
     
     app.UseRouting();
@@ -172,7 +168,7 @@ catch (Exception e)
 }
 finally
 {
-    Log.Information("Template Service is shutting down...");
+    Log.Information("SimOps Service is shutting down...");
     Log.CloseAndFlush();
 }
 
