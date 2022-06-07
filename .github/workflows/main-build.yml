@@ -1,4 +1,4 @@
-name: .NET
+name: Build SimOps Service
 
 on:
   push:
