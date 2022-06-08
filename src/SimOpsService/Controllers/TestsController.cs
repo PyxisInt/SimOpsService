@@ -6,10 +6,10 @@ using PrabalGhosh.Utilities.Attributes;
 namespace SimOpsService.Controllers;
 
 [Route("api/v1/[controller]")]
-[MultiPolicyAuthorize("role:admin;role:pilot")]
 public class TestsController : BaseController
 {
     [HttpGet(Name = nameof(GetAuthenticatedInfo))]
+    [Authorize("role:admin")]
     public async Task<IActionResult> GetAuthenticatedInfo()
     {
         return Ok(new
