@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using SimOps.Models.Authentication;
 
 namespace SimOpsService.Repository
 {
@@ -9,6 +10,10 @@ namespace SimOpsService.Repository
         {
 
         }
+        
+        
+        public DbSet<User> Users { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
