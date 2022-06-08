@@ -1,14 +1,15 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using PrabalGhosh.Utilities.Attributes;
 
 namespace SimOpsService.Controllers;
 
 [Route("api/v1/[controller]")]
-[Authorize]
+[MultiPolicyAuthorize("role:admin;role:pilot")]
 public class TestsController : BaseController
 {
-    [HttpGet]
+    [HttpGet(Name = nameof(GetAuthenticatedInfo))]
     public async Task<IActionResult> GetAuthenticatedInfo()
     {
         return Ok(new

@@ -21,15 +21,15 @@ using Serilog;
 using Serilog.Core;
 using Serilog.Events;
 using Serilog.Formatting.Compact;
+using SimOpsService.Auth0;
 using SimOpsService.Repository;
-using SimOpsService.SwaggerEnhancements;
 
 
 void SetupApplicationDependencyInjection(IServiceCollection services)
 {
     //******** setting up for AutoDI
-    services.RegisterAssemblyPublicNonGenericClasses()
-        .AsPublicImplementedInterfaces();
+    // services.RegisterAssemblyPublicNonGenericClasses()
+    //     .AsPublicImplementedInterfaces();
     //********** add manual DI below this line
 
 
@@ -46,17 +46,24 @@ try
 
     builder.Host.UseSerilog((ctx, lc) => { lc.WriteTo.Console(); });
     builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
+    var domain = builder.Configuration["Auth0:Authority"];
     builder.Services.AddAuthentication(x =>
     {
         x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
         x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
     }).AddJwtBearer(x =>
     {
-        x.Authority = builder.Configuration["Auth0:Authority"];
+        x.Authority = domain;
         x.Audience = builder.Configuration["Auth0:ApiIdentifier"];
     });
 
-    builder.Services.AddAuthorization();
+    builder.Services.AddAuthorization(x =>
+    {
+        x.AddPolicy("role:admin", 
+            policy => policy.Requirements.Add(new HasScopeRequirement("role:admin", domain)));
+        x.AddPolicy("role:pilot", 
+            policy => policy.Requirements.Add(new HasScopeRequirement("role:pilot", domain)));
+    });
     
     builder.Services.AddCors();
     builder.Services.AddControllers().AddNewtonsoftJson(options =>

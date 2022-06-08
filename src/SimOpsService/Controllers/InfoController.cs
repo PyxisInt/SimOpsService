@@ -15,7 +15,7 @@ namespace SimOpsService.Controllers
     [Route("")]
     public class InfoController : BaseController
     {
-        [HttpGet]
+        [HttpGet(Name = nameof(GetInfo))]
         [Produces("application/json")]
         public async Task<IActionResult> GetInfo()
         {
@@ -34,12 +34,8 @@ namespace SimOpsService.Controllers
             return myIp.Trim();
         }
 
-        [SwaggerOperation(
-            Summary = "Dynamically changes the log level - helpful for debugging",
-            Description = "Dynamically change the log level",
-            OperationId = "ChangeLogLevel"
-        )]
-        [HttpPost("loglevel")]
+
+        [HttpPost("loglevel", Name = nameof(ChangeLogLevel))]
         public async Task<IActionResult> ChangeLogLevel([FromBody] LogLevelRequest logLevelRequest)
         {
             if (!ModelState.IsValid)

@@ -17,7 +17,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.5" />
     <PackageReference Include="NetCore.AutoRegisterDi" Version="2.1.0" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.1" />
-    <PackageReference Include="PrabalGhosh.Utilities" Version="2.0.26" />
+    <PackageReference Include="PrabalGhosh.Utilities" Version="2.0.27" />
     <PackageReference Include="prometheus-net.AspNetCore" Version="6.0.0" />
     <PackageReference Include="prometheus-net.AspNetCore.HealthChecks" Version="6.0.0" />
     <PackageReference Include="Refit" Version="6.3.2" />
