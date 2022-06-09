@@ -13,7 +13,6 @@ using SimOpsService.Interfaces;
 using SimOpsService.Models;
 using SimOpsService.Repository;
 
-
 namespace SimOpsService.Services;
 
 public class AuthManager : IAuthManager

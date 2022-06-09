@@ -9,7 +9,6 @@ COPY *.sln .
 COPY src/SimOps.Models/SimOps.Models.csproj ./src/SimOps.Models/
 COPY src/SimOpsService/SimOpsService.csproj ./src/SimOpsService/
 COPY src/SimOps.Sdk/SimOps.Sdk.csproj ./src/SimOps.Sdk/
-COPY src/SimOpsService.Interfaces/SimOpsService.Interfaces.csproj ./src/SimOpsService.Interfaces/
 COPY tests/SimOpsService.Tests/SimOpsService.Tests.csproj ./tests/SimOpsService.Tests/
 RUN dotnet restore
 
@@ -17,7 +16,6 @@ RUN dotnet restore
 COPY src/SimOps.Models/. ./src/SimOps.Models/
 COPY src/SimOpsService/. ./src/SimOpsService/
 COPY src/SimOps.Sdk/. ./src/SimOps.Sdk/
-COPY src/SimOpsService.Interfaces/. ./SimOpsService.Interfaces/
 COPY tests/SimOpsService.Tests/. ./tests/SimOpsService.Tests/
 WORKDIR /src/SimOpsService
 RUN dotnet build  -c Release -o /app/build

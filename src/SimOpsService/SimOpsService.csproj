@@ -34,7 +34,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SimOps.Models\SimOps.Models.csproj" />
-    <ProjectReference Include="..\SimOpsService.Interfaces\SimOpsService.Interfaces.csproj" />
   </ItemGroup>
 
 
