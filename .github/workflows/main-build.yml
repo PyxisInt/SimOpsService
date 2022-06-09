@@ -40,11 +40,6 @@ jobs:
     - name: Publish Nuget Package for Models
       run: dotnet nuget push SimOps.Models.*.nupkg -k ${{ secrets.NUGET_KEY }} -s https://api.nuget.org/v3/index.json
 
-    - name: Create Nuget Package for SDK
-      run: dotnet pack -c Release -o . src/SimOps.Sdk/SimOps.Sdk.csproj
-    - name: Publish Nuget Package for SDK
-      run: dotnet nuget push SimOps.Sdk.*.nupkg -k ${{ secrets.NUGET_KEY }} -s https://api.nuget.org/v3/index.json
-
     - name: Build and Push Docker Image
       uses: docker/build-push-action@v3.0.0
       with:
