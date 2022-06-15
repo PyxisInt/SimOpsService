@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SimOpsService.Repository;
 
@@ -10,9 +11,10 @@ using SimOpsService.Repository;
 namespace SimOpsService.Migrations
 {
     [DbContext(typeof(SimOpsContext))]
-    partial class SimOpsContextModelSnapshot : ModelSnapshot
+    [Migration("20220614235100_AirportsAndAircrafts")]
+    partial class AirportsAndAircrafts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,38 +85,6 @@ namespace SimOpsService.Migrations
                     b.HasKey("Username");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("SimOps.Models.Common.EngineCode", b =>
-                {
-                    b.Property<string>("Code")
-                        .HasMaxLength(10)
-                        .HasColumnType("varchar(10)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("varchar(30)");
-
-                    b.HasKey("Code");
-
-                    b.ToTable("EngineCodes");
-                });
-
-            modelBuilder.Entity("SimOps.Models.Common.EquipmentCode", b =>
-                {
-                    b.Property<string>("Code")
-                        .HasMaxLength(10)
-                        .HasColumnType("varchar(10)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("varchar(30)");
-
-                    b.HasKey("Code");
-
-                    b.ToTable("EquipmentCodes");
                 });
 
             modelBuilder.Entity("SimOps.Models.Fleet.Aircraft", b =>
