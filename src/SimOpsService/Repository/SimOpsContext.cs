@@ -21,6 +21,8 @@ namespace SimOpsService.Repository
         public DbSet<Aircraft> Aircrafts { get; set; }
         public DbSet<EngineCode> EngineCodes { get; set; }
         public DbSet<EquipmentCode> EquipmentCodes { get; set; }
+        public DbSet<Hub> Hubs { get; set; }
+        public DbSet<Airline> Airlines { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
